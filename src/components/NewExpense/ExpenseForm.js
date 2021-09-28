@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./ExpenseForm.css";
-const ExpenseForm = ({ forSaveExData }) => {
+const ExpenseForm = ({ forSaveExData, setShow }) => {
   // const [userInput, setUserInput]=useState({
   //   enteredTitle:'',
   //   enteredAmount:'',
@@ -24,13 +24,14 @@ const ExpenseForm = ({ forSaveExData }) => {
     e.preventDefault();
     const expenseData = {
       title: enteredTitle,
-      amount: enteredAmount,
+      amount: +enteredAmount,
       date: new Date(enteredDate),
     };
     forSaveExData(expenseData);
     setEnteredAmount("");
     setEnteredTitle("");
     setEnteredDate("");
+    setShow(true);
   };
   return (
     <form onSubmit={SumbitHandler}>
@@ -64,8 +65,19 @@ const ExpenseForm = ({ forSaveExData }) => {
           />
         </div>
       </div>
-      <div className="new-expense__actions">
-        <button type="submit">Add expenses</button>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "flex-end",
+        }}
+      >
+        <div className="new-expense__actions">
+          <button onClick={setShow(false)}> Cancel</button>
+        </div>
+        <div className="new-expense__actions">
+          <button type="submit">Add expenses</button>
+        </div>
       </div>
     </form>
   );

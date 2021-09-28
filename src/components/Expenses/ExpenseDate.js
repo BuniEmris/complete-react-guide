@@ -4,6 +4,7 @@ const ExpenseDate = ({ date }) => {
   const month = date.toLocaleString("en-US", { month: "short" });
   const year = date.getFullYear();
   const day = date.toLocaleString("en-US", { day: "2-digit" });
+
   return (
     <div className="expense-date">
       <div className="expense-date__month">{month}</div>
